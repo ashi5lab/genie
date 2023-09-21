@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useState } from 'react';
 
-function NationalityChecker() {
+function GenderChecker() {
 
   const [name,setName] = useState('');
   const [Countryresponse,setResponse] = useState([]);
@@ -15,8 +15,9 @@ function NationalityChecker() {
 
 
   const onButtonClick = () =>{
-    axios.get('https://api.nationalize.io?name='+name).then(function (response) {
+    axios.get('https://api.genderize.io?'+name).then(function (response) {
       // handle success
+      debugger
       setResponse(response.data.country);
       console.log("data",Countryresponse)
       setShowResult(true);
@@ -25,13 +26,13 @@ function NationalityChecker() {
   }
 
     return ( <div>
-        <h2>Nationality Checker</h2>
+        <h2>Gender Checker</h2>
          <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Name of Person</Form.Label>
         <Form.Control type="text" placeholder="Alex" name="name" value={name} onChange={e=>handleChange(e.target.value)}/>
       </Form.Group>
-      <Button variant="dark" onClick={onButtonClick}>Check Nationality</Button>
+      <Button variant="dark" onClick={onButtonClick}>Check Gender</Button>
     </Form>
     {
       showResult && 
@@ -48,4 +49,4 @@ function NationalityChecker() {
     </div> );
 }
 
-export default NationalityChecker;
+export default GenderChecker;
